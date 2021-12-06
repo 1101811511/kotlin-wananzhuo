@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home_page"
+        android:checkable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:title="首页"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/project_page"
+
+        android:checkable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:title="项目"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/guang_page"
+        android:checkable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:title="广场"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/public_page"
+
+        android:checkable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:title="公众号"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mine_page"
+
+        android:checkable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:title="我的"
+        app:showAsAction="ifRoom" />
+
+</menu>

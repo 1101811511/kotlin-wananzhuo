@@ -28,14 +28,6 @@ class GuangFragment :Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_guangchang,container,false)
-        view.guangFragment.setOnClickListener {
-
-            val controller = Navigation.findNavController(it)
-            controller.navigate(R.id.action_guangFragment_to_publicFragment)
-
-
-        }
-
         return view
     }
 }
