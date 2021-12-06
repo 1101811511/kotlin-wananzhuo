@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/guangFragment">
+<!--    <fragment-->
+<!--        android:id="@+id/home_fragment"-->
+<!--        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.HomeFragment"-->
+<!--        tools:layout="@layout/fragment_home" />-->
+<!--    <fragment android:id="@+id/project_fragment"-->
+<!--        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.ProJectFragment"-->
+<!--        tools:layout="@layout/fragment_project"/>-->
+<!--    <fragment android:id="@+id/guang_fragment"-->
+<!--        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.GuangFragment"-->
+<!--        tools:layout="@layout/fragment_guangchang"/>-->
+<!--    <fragment android:id="@+id/public_fragment"-->
+<!--        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.PublicFragment"-->
+<!--        tools:layout="@layout/fragment_public"/>-->
+<!--    <fragment android:id="@+id/mine_fragment"-->
+<!--        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.MineFragment"-->
+<!--        tools:layout="@layout/fragment_mine"/>-->
+
+    <fragment
+        android:id="@+id/publicFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.PublicFragment"
+        android:label="PublicFragment" >
+        <action
+            android:id="@+id/action_publicFragment_to_guangFragment"
+            app:destination="@id/guangFragment" />
+        <action
+            android:id="@+id/action_publicFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/guangFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.GuangFragment"
+        android:label="GuangFragment" >
+        <action
+            android:id="@+id/action_guangFragment_to_publicFragment"
+            app:destination="@id/publicFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_guangFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.HomeFragment"
+        android:label="HomeFragment" />
+</navigation>
