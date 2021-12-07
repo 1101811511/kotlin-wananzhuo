@@ -18,6 +18,6 @@ class Config {
         const val PUBLIC_FRASGMENT = 3
         const val MINE_FRGMENT = 4
         const val BASE_URL = "https://www.wanandroid.com/"
-        const val TAG = "厦门我大哥"
+        const val TAG = "贝吉塔"
     }
 }

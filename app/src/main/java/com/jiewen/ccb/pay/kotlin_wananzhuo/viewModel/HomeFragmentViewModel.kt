@@ -2,8 +2,12 @@ package com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.jiewen.ccb.pay.kotlin_wananzhuo.Repository.HomeRepository
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.BannerBean
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  *    author : 桶哥二号
@@ -13,10 +17,20 @@ import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.BannerBean
  *    version: 1.0
  */
 class HomeFragmentViewModel :ViewModel(){
-    val bannerData:MutableLiveData<BannerBean> = MutableLiveData()
 
-     private val homeeRepository = HomeRepository()
+    val bannerData:MutableLiveData<ArrayList<BannerBean>> = MutableLiveData()
+
+     private val homeRepository by lazy {
+         HomeRepository()
+     }
 
 
 
+    fun getBanner(){
+        viewModelScope.launch {
+                runCatching {
+                    bannerData.value =  homeRepository.requestBanner()
+                }.isSuccess
+            }
+    }
 }

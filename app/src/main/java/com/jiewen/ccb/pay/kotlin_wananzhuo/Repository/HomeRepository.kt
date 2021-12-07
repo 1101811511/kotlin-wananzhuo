@@ -1,7 +1,8 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.Repository
 
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.BannerBean
-import com.jiewen.ccb.pay.kotlin_wananzhuo.model.HomeModel
+import com.jiewen.ccb.pay.kotlin_wananzhuo.netWork.AppServices
+import com.jiewen.ccb.pay.kotlin_wananzhuo.netWork.RetrofitManager
 
 /**
  *    author : 桶哥二号
@@ -11,8 +12,8 @@ import com.jiewen.ccb.pay.kotlin_wananzhuo.model.HomeModel
  *    version: 1.0
  */
 class HomeRepository  {
-          private val homeModel = HomeModel()
-//     fun  requestBanner():ArrayList<BannerBean>{
-//          homeModel.requestbannerData()
-//     }
+
+   suspend  fun  requestBanner():ArrayList<BannerBean> = RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java).getBanners().data
+
+
 }

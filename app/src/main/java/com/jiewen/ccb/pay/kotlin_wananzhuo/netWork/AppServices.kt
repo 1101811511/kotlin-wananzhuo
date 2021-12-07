@@ -19,7 +19,7 @@ interface AppServices {
      * http://www.wanandroid.com/banner/json
      */
     @GET("banner/json")
-    fun getBanners(): Observable<BaseResponse<ArrayList<BannerBean>>>
+    suspend fun getBanners():BaseResponse<ArrayList<BannerBean>>
 
 //    /**
 //     * 获取首页置顶文章列表
