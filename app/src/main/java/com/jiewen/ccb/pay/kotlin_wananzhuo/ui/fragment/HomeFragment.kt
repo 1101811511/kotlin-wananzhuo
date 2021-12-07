@@ -1,18 +1,11 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment
 
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.jiewen.ccb.pay.kotlin_wananzhuo.Config
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
+import com.jiewen.ccb.pay.kotlin_wananzhuo.base.BaseFragment
+import com.jiewen.ccb.pay.kotlin_wananzhuo.databinding.FragmentHomeBinding
 import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.ImageAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.HomeFragmentViewModel
 import com.youth.banner.indicator.CircleIndicator
-import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  *    author : 桶哥二号
@@ -21,21 +14,19 @@ import kotlinx.android.synthetic.main.fragment_home.*
  *    desc   : 我好难呀，我太难了呀
  *    version: 1.0
  */
-class HomeFragment :Fragment() {
-        lateinit var  homeFragmentViewModel: HomeFragmentViewModel
+class HomeFragment :
+    BaseFragment<FragmentHomeBinding, HomeFragmentViewModel>(HomeFragmentViewModel::class.java) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        homeFragmentViewModel =  ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
-        homeFragmentViewModel.getBanner()
-        homeFragmentViewModel.bannerData.observe(viewLifecycleOwner){
-            banner_view.adapter = ImageAdapter(it)
-            banner_view.addBannerLifecycleObserver(this)
-                .setIndicator( CircleIndicator(activity))
+    override fun getLayoutId(): Int = R.layout.fragment_home
+    override fun initView() {
+        viewModel.bannerData.observe(viewLifecycleOwner) {
+            databing.bannerView.apply {
+                adapter = ImageAdapter(it)
+                indicator = CircleIndicator(activity)
+                addBannerLifecycleObserver(viewLifecycleOwner)
+            }
         }
-        return inflater.inflate(R.layout.fragment_home,container,false)
+        viewModel.getBanner()
     }
+
 }

@@ -1,8 +1,10 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jiewen.ccb.pay.kotlin_wananzhuo.Config
 import com.jiewen.ccb.pay.kotlin_wananzhuo.Repository.HomeRepository
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.BannerBean
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +29,7 @@ class HomeFragmentViewModel :ViewModel(){
 
 
     fun getBanner(){
+        Log.i(Config.TAG,"11111")
         viewModelScope.launch {
                 runCatching {
                     bannerData.value =  homeRepository.requestBanner()

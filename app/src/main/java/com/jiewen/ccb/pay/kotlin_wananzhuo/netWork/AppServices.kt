@@ -2,6 +2,7 @@ package com.jiewen.ccb.pay.kotlin_wananzhuo.netWork
 
 import com.jiewen.ccb.pay.kotlin_wananzhuo.base.BaseResponse
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.BannerBean
+import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.TopArticleListBean
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
@@ -21,13 +22,13 @@ interface AppServices {
     @GET("banner/json")
     suspend fun getBanners():BaseResponse<ArrayList<BannerBean>>
 
-//    /**
-//     * 获取首页置顶文章列表
-//     * http://www.wanandroid.com/article/top/json
-//     */
-//    @GET("article/top/json")
-//    fun getTopArticles(): Observable<HttpResult<MutableList<Article>>>
-//
+    /**
+     * 获取首页置顶文章列表
+     * http://www.wanandroid.com/article/top/json
+     */
+    @GET("article/top/json")
+     suspend fun getTopArticles(): Observable<BaseResponse<ArrayList<TopArticleListBean>>>
+
 //    /**
 //     * 获取文章列表
 //     * http://www.wanandroid.com/article/list/0/json

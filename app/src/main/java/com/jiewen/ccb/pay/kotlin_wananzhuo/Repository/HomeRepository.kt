@@ -11,9 +11,9 @@ import com.jiewen.ccb.pay.kotlin_wananzhuo.netWork.RetrofitManager
  *    desc   : 我好难呀，我太难了呀
  *    version: 1.0
  */
-class HomeRepository  {
+class HomeRepository {
 
-   suspend  fun  requestBanner():ArrayList<BannerBean> = RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java).getBanners().data
-
+    suspend fun requestBanner(): ArrayList<BannerBean> =
+        RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java).getBanners().data
 
 }
