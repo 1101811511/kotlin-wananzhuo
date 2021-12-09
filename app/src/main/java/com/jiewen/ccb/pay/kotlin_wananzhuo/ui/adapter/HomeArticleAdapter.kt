@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
 import com.jiewen.ccb.pay.kotlin_wananzhuo.databinding.ItemHomeArticleBinding
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.TopArticleListBean
-import com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.HomeFragmentViewModel
-import kotlinx.android.synthetic.main.item_home_article.view.*
 
 /**
  *    author : 桶哥二号
@@ -21,39 +20,57 @@ import kotlinx.android.synthetic.main.item_home_article.view.*
  *    desc   : 我好难呀，我太难了呀
  *    version: 1.0
  */
-class HomeArticleAdapter(val context: Context)  :RecyclerView.Adapter<HomeArticleAdapter.HomeArticleViewHolder>(){
+class HomeArticleAdapter(private val context: Context) :
+    ListAdapter<TopArticleListBean, HomeArticleAdapter.HomeArticleViewHolder>(object :
+        DiffUtil.ItemCallback<TopArticleListBean>() {
+        //判断是否是同一个item
+        override fun areItemsTheSame(
+            oldItem: TopArticleListBean,
+            newItem: TopArticleListBean
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+        //如果item相同，此方法用于判断是否同一个 Item 的内容也相同
+        override fun areContentsTheSame(
+            oldItem: TopArticleListBean,
+            newItem: TopArticleListBean
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+    }) {
 
     lateinit var dataBinding: ItemHomeArticleBinding
-    val dataList:ArrayList<TopArticleListBean>  = ArrayList()
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeArticleViewHolder {
-         val view =LayoutInflater.from(context).inflate(R.layout.item_home_article,parent,false)
-
+        val view = LayoutInflater.from(context).inflate(R.layout.item_home_article, parent, false)
         return HomeArticleViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HomeArticleViewHolder, position: Int) {
-        val topArticleListBean = dataList[position]
+        val topArticleListBean = currentList[position]
         holder.dataBinding.dataBean = topArticleListBean
-
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun  setData(list:java.util.ArrayList<TopArticleListBean>){
-        dataList.clear()
-        dataList.addAll(list)
-        notifyDataSetChanged()
-
+    inner class HomeArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val dataBinding: ItemHomeArticleBinding = DataBindingUtil.bind(itemView)!!
     }
 
-    override fun getItemCount(): Int  = dataList.size
-
-
-    inner  class HomeArticleViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        val dataBinding:ItemHomeArticleBinding = DataBindingUtil.bind(itemView)!!
-//        val   databinds:ItemHomeArticleBinding = dataBind
+    /**
+     * 重新加载必须建一个新的list
+     */
+    override fun submitList(list: List<TopArticleListBean>?) {
+        super.submitList(if (list == null) mutableListOf() else
+            mutableListOf<TopArticleListBean>().apply {
+                addAll(
+                    list
+                )
+            })
     }
+
 }
+
+

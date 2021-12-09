@@ -17,7 +17,7 @@ import java.util.ArrayList
  *    desc   : 我好难呀，我太难了呀
  *    version: 1.0
  */
-class ImageAdapter(data: ArrayList<BannerBean>) : BannerAdapter<BannerBean, ImageAdapter.ImageHolder>(data) {
+class ImageAdapter(data: MutableList<BannerBean>) : BannerAdapter<BannerBean, ImageAdapter.ImageHolder>(data) {
 
     class ImageHolder(var imageView: ImageView) : RecyclerView.ViewHolder(imageView)
 

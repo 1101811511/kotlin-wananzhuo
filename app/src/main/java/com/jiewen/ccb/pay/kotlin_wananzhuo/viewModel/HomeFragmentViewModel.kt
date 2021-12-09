@@ -27,12 +27,14 @@ import kotlinx.coroutines.withContext
  */
 class HomeFragmentViewModel : ViewModel() {
 
+    private lateinit var  toallArticle:MutableList<TopArticleListBean>
+
 
 //    var mDataSource: DataSource<Int, TopArticleListBean>? = null
 
-    val bannerData: MutableLiveData<ArrayList<BannerBean>> = MutableLiveData()
+    val bannerData: MutableLiveData<MutableList<BannerBean>> = MutableLiveData()
 
-    var mPageData: MutableLiveData<ArrayList<TopArticleListBean>> = MutableLiveData()
+    var mPageData: MutableLiveData<MutableList<TopArticleListBean>> = MutableLiveData()
 
     //使用paging 2失败。。没有和协程结合起来。。。
 //    val mFactory = object : DataSource.Factory<Int, TopArticleListBean>() {
@@ -108,8 +110,8 @@ class HomeFragmentViewModel : ViewModel() {
     //请求首页置顶的文章
     fun getTopArticleList() {
         viewModelScope.launch {
-            val resutlt = kotlin.runCatching {
-                val toallArticle = ArrayList<TopArticleListBean>()
+          val   resutlt = kotlin.runCatching {
+                 toallArticle = mutableListOf()
                 val topArticle = viewModelScope.async {
                     homeRepository.requestArticleList()
                 }
@@ -125,6 +127,21 @@ class HomeFragmentViewModel : ViewModel() {
 
 
             Log.i(Config.TAG, resutlt.toString())
+
+        }
+    }
+
+    //加载更多
+    fun loadMoreArticleList(){
+        viewModelScope.launch {
+            val  moreList =  viewModelScope.async {
+               homeRepository.loadMoreHmeArticleList()
+            }
+            Log.i(Config.TAG,toallArticle.size.toString())
+            val list = mPageData.value
+            list?.addAll(moreList.await().datas)
+            mPageData.value = list
+            Log.i(Config.TAG,moreList.await().datas.toString())
 
         }
     }

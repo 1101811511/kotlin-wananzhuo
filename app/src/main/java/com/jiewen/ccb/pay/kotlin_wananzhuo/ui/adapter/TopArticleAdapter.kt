@@ -40,7 +40,7 @@
 //
 //    inner class TopArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 //
-//    companion object {
+////    companion object {
 //        // DiffUtil用来辅助re的 相关链接 https://www.jianshu.com/p/8514d5c0ee60
 //        val diffCallBack = object : DiffUtil.ItemCallback<TopArticleListBean>() {
 //            //判断是否是同一个item
@@ -60,7 +60,7 @@
 //            }
 //
 //        }
-//    }
+////    }
 //
 //
 //}
