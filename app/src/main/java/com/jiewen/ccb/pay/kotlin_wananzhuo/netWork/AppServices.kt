@@ -1,7 +1,9 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.netWork
 
+import androidx.paging.PagedList
 import com.jiewen.ccb.pay.kotlin_wananzhuo.base.BaseResponse
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.BannerBean
+import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.HomeArticleListBean
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.TopArticleListBean
 import io.reactivex.Observable
 import retrofit2.Call
@@ -20,22 +22,22 @@ interface AppServices {
      * http://www.wanandroid.com/banner/json
      */
     @GET("banner/json")
-    suspend fun getBanners():BaseResponse<ArrayList<BannerBean>>
+    suspend fun getBanners(): BaseResponse<ArrayList<BannerBean>>
 
     /**
      * 获取首页置顶文章列表
      * http://www.wanandroid.com/article/top/json
      */
     @GET("article/top/json")
-     suspend fun getTopArticles(): Observable<BaseResponse<ArrayList<TopArticleListBean>>>
+    suspend fun getTopArticles(): BaseResponse<ArrayList<TopArticleListBean>>
 
-//    /**
+    //    /**
 //     * 获取文章列表
 //     * http://www.wanandroid.com/article/list/0/json
 //     * @param pageNum
 //     */
-//    @GET("article/list/{pageNum}/json")
-//    fun getArticles(@Path("pageNum") pageNum: Int): Observable<HttpResult<ArticleResponseBody>>
+    @GET("article/list/{pageNum}/json")
+    suspend fun getArticles(@Path("pageNum") pageNum: Int): BaseResponse<HomeArticleListBean>
 
 //    /**
 //     * 获取知识体系

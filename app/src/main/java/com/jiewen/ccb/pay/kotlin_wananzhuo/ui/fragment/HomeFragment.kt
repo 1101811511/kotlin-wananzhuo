@@ -1,8 +1,11 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment
 
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
 import com.jiewen.ccb.pay.kotlin_wananzhuo.base.BaseFragment
 import com.jiewen.ccb.pay.kotlin_wananzhuo.databinding.FragmentHomeBinding
+import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.HomeArticleAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.ImageAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.HomeFragmentViewModel
 import com.youth.banner.indicator.CircleIndicator
@@ -16,9 +19,10 @@ import com.youth.banner.indicator.CircleIndicator
  */
 class HomeFragment :
     BaseFragment<FragmentHomeBinding, HomeFragmentViewModel>(HomeFragmentViewModel::class.java) {
-
     override fun getLayoutId(): Int = R.layout.fragment_home
+
     override fun initView() {
+        //监听banner返回的数据
         viewModel.bannerData.observe(viewLifecycleOwner) {
             databing.bannerView.apply {
                 adapter = ImageAdapter(it)
@@ -26,7 +30,16 @@ class HomeFragment :
                 addBannerLifecycleObserver(viewLifecycleOwner)
             }
         }
+        val homeArticleAdapter = HomeArticleAdapter(requireContext())
+        databing.recyclerView.adapter =homeArticleAdapter
+        databing.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        viewModel.mPageData.observe(viewLifecycleOwner){
+           homeArticleAdapter.setData(it)
+        }
+        //请求接口
         viewModel.getBanner()
+        viewModel.getTopArticleList()
+
     }
 
 }

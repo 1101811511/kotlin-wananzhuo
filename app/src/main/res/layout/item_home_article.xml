@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dataBean"
+            type="com.jiewen.ccb.pay.kotlin_wananzhuo.entity.TopArticleListBean" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding">
+
+            <TextView
+                android:id="@+id/tvTag"
+                style="@style/text_style"
+                android:text="@{dataBean.author}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding"
+                android:textColor="@color/red"
+                tools:text="置顶 " />
+
+            <TextView
+                android:id="@+id/tvAuthor"
+                style="@style/text_style"
+                android:textColor="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvTag"
+                android:text="@{dataBean.shareUser}"
+                tools:text="鸿洋" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                style="@style/text_style"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/padding"
+                android:text="@{dataBean.niceDate}"
+                tools:text="2020-03-08" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/text_style_tow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDate"
+                android:layout_marginLeft="@dimen/padding"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/padding"
+                android:maxLines="3"
+                android:text="@{dataBean.title}"
+                tools:text="分布式协调工具之zookeeper使用篇-Zookeeper系统核心模型" />
+
+            <TextView
+                android:id="@+id/tvChapterName"
+                style="@style/text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitle"
+                android:layout_marginLeft="@dimen/padding"
+                android:layout_marginTop="10dp"
+                android:text="@{dataBean.superChapterName}"
+                tools:text="开发环境" />
+
+            <ImageView
+                android:id="@+id/ivCollect"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/tvChapterName"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/padding"
+                android:padding="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/tvChapterName"
+                android:layout_marginTop="@dimen/padding"
+                android:background="@color/divdeLine" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>
