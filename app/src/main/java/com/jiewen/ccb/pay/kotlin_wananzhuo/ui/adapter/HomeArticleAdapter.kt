@@ -41,7 +41,6 @@ class HomeArticleAdapter(private val context: Context) :
 
     }) {
 
-    lateinit var dataBinding: ItemHomeArticleBinding
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeArticleViewHolder {
@@ -60,7 +59,7 @@ class HomeArticleAdapter(private val context: Context) :
     }
 
     /**
-     * 重新加载必须建一个新的list
+     * 重新加载必须建一个新的list，要不然 diff不起作用。。
      */
     override fun submitList(list: List<TopArticleListBean>?) {
         super.submitList(if (list == null) mutableListOf() else

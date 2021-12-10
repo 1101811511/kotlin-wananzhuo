@@ -7,13 +7,4 @@ package com.jiewen.ccb.pay.kotlin_wananzhuo.entity
  *    desc   : 我好难呀，我太难了呀
  *    version: 1.0
  */
-data class HomeArticleListBean(val curPage: Int, val datas: ArrayList<TopArticleListBean>) {
-//    data class HomeArticleItemBean(
-//        val author: String,
-//        val chapterName: String,
-//        val link: String,
-//        val niceDate: String,
-//        val title: String,
-//        val courseId: String
-//    )
-}
+data class HomeArticleListBean(val curPage: Int, val datas: ArrayList<TopArticleListBean>)

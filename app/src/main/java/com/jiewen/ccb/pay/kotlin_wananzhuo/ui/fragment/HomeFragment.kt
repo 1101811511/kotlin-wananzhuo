@@ -39,25 +39,22 @@ class HomeFragment :
         }
         val homeArticleAdapter = HomeArticleAdapter(requireContext())
         databing.recyclerView.adapter = homeArticleAdapter
-        databing.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         viewModel.mPageData.observe(viewLifecycleOwner) {
             databing.refreshLayout.finishRefresh()
             databing.refreshLayout.finishLoadMore()
             if (it.size == 0){
                 databing.refreshLayout.finishLoadMoreWithNoMoreData()
+            }else{
+                homeArticleAdapter.submitList(it)
             }
-//            homeArticleAdapter.setData(it)
-            Log.i(Config.TAG, "${it.size}回调的")
-            homeArticleAdapter.submitList(it)
         }
         //请求接口
-        viewModel.getBanner()
-        viewModel.getTopArticleList()
+        viewModel.getBannerTopArticleList()
 
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        viewModel.getTopArticleList()
+        viewModel.getBannerTopArticleList()
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {

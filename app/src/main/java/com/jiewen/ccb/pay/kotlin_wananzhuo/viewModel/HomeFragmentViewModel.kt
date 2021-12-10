@@ -27,7 +27,7 @@ import kotlinx.coroutines.withContext
  */
 class HomeFragmentViewModel : ViewModel() {
 
-    private lateinit var  toallArticle:MutableList<TopArticleListBean>
+    private lateinit var toallArticle: MutableList<TopArticleListBean>
 
 
 //    var mDataSource: DataSource<Int, TopArticleListBean>? = null
@@ -108,17 +108,17 @@ class HomeFragmentViewModel : ViewModel() {
     }
 
     //请求首页置顶的文章
-    fun getTopArticleList() {
+    fun getBannerTopArticleList() {
         viewModelScope.launch {
-          val   resutlt = kotlin.runCatching {
-                 toallArticle = mutableListOf()
+            bannerData.value = homeRepository.requestBanner()
+            val resutlt = kotlin.runCatching {
+                toallArticle = mutableListOf()
                 val topArticle = viewModelScope.async {
                     homeRepository.requestArticleList()
                 }
                 val homeFirstArticle = viewModelScope.async {
                     homeRepository.requestHomeArticleList()
                 }
-
                 toallArticle.addAll(topArticle.await())
                 toallArticle.addAll(homeFirstArticle.await().datas)
                 mPageData.value = toallArticle
@@ -132,17 +132,18 @@ class HomeFragmentViewModel : ViewModel() {
     }
 
     //加载更多
-    fun loadMoreArticleList(){
+    fun loadMoreArticleList() {
         viewModelScope.launch {
-            val  moreList =  viewModelScope.async {
-               homeRepository.loadMoreHmeArticleList()
+            val moreList = viewModelScope.async {
+                homeRepository.loadMoreHmeArticleList()
             }
-            Log.i(Config.TAG,toallArticle.size.toString())
+            Log.i(Config.TAG, toallArticle.size.toString())
             val list = mPageData.value
             list?.addAll(moreList.await().datas)
             mPageData.value = list
-            Log.i(Config.TAG,moreList.await().datas.toString())
+            Log.i(Config.TAG, moreList.await().datas.toString())
 
         }
     }
+
 }

@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="HomeViewModel"
             type="com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.HomeFragmentViewModel" />
@@ -11,38 +12,50 @@
 
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.youth.banner.Banner
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/banner_view"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
+     <FrameLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
             <com.scwang.smart.refresh.header.ClassicsHeader
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_margin="5dp"
-
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    app:elevation="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <com.youth.banner.Banner
+                    android:shadowColor="#ffffff"
+                    app:layout_scrollFlags="scroll"
+                    android:id="@+id/banner_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>>
+
             <com.scwang.smart.refresh.footer.ClassicsFooter
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+     </FrameLayout>
 
-
-
-    </LinearLayout>
 </layout>
