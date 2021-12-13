@@ -1,11 +1,13 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment
 
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.jiewen.ccb.pay.kotlin_wananzhuo.Config
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
 import com.jiewen.ccb.pay.kotlin_wananzhuo.base.BaseFragment
 import com.jiewen.ccb.pay.kotlin_wananzhuo.databinding.FragmentHomeBinding
+import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.TopArticleListBean
 import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.HomeArticleAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.ImageAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.HomeFragmentViewModel
@@ -26,7 +28,13 @@ class HomeFragment :
     OnRefreshListener, OnLoadMoreListener {
     override fun getLayoutId(): Int = R.layout.fragment_home
 
+    private val homeArticleAdapter: HomeArticleAdapter by lazy {
+        HomeArticleAdapter(requireContext())
+    }
+
     override fun initView() {
+        //请求接口
+        viewModel.getBannerTopArticleList()
         databing.refreshLayout.setOnRefreshListener(this)
         databing.refreshLayout.setOnLoadMoreListener(this)
         //监听banner返回的数据
@@ -37,19 +45,21 @@ class HomeFragment :
                 addBannerLifecycleObserver(viewLifecycleOwner)
             }
         }
-        val homeArticleAdapter = HomeArticleAdapter(requireContext())
-        databing.recyclerView.adapter = homeArticleAdapter
         viewModel.mPageData.observe(viewLifecycleOwner) {
             databing.refreshLayout.finishRefresh()
             databing.refreshLayout.finishLoadMore()
-            if (it.size == 0){
+            if (it.size == 0) {
                 databing.refreshLayout.finishLoadMoreWithNoMoreData()
-            }else{
+            } else {
                 homeArticleAdapter.submitList(it)
             }
         }
-        //请求接口
-        viewModel.getBannerTopArticleList()
+        databing.recyclerView.adapter = homeArticleAdapter
+         homeArticleAdapter.setItemClickListener = {
+             postion: Int, dataBean: TopArticleListBean ->
+             Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_webFragment)
+             Log.i(Config.TAG,"当前的位置${postion}-----${dataBean.toString()}")
+         }
 
     }
 

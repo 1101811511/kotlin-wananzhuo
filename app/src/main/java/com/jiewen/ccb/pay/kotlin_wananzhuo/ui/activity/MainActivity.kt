@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
     private var proJectFragment: ProJectFragment? = null
     private var guangFragment: GuangFragment? = null
     private var publicFragment: PublicFragment? = null
-    var mineFragment: MineFragment? = null
+    private var mineFragment: MineFragment? = null
     private var currentFragmentIndex: Int = 0
     var lastFragmentIndex = -1
 
@@ -91,7 +91,7 @@ class MainActivity : BaseActivity() {
             Config.MINE_FRGMENT -> {
                 if (mineFragment == null) {
                     mineFragment = MineFragment()
-                    fragmentTransaction.add(R.id.mine_page, mineFragment!!)
+                    fragmentTransaction.add(R.id.frame_group, mineFragment!!)
                 }
                 fragmentTransaction.show(mineFragment!!)
             }

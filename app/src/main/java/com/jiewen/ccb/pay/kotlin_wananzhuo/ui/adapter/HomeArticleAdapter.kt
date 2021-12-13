@@ -43,6 +43,9 @@ class HomeArticleAdapter(private val context: Context) :
 
 
 
+
+    var setItemClickListener:((postion:Int,dataBean:TopArticleListBean)->Unit)?= null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeArticleViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_article, parent, false)
         return HomeArticleViewHolder(view)
@@ -51,6 +54,9 @@ class HomeArticleAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: HomeArticleViewHolder, position: Int) {
         val topArticleListBean = currentList[position]
         holder.dataBinding.dataBean = topArticleListBean
+        holder.dataBinding.itemView.setOnClickListener {
+            setItemClickListener?.invoke(position,topArticleListBean)
+        }
     }
 
 
