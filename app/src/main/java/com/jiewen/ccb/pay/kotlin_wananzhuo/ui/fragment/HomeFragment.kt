@@ -1,7 +1,9 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment
 
 import android.util.Log
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.jiewen.ccb.pay.kotlin_wananzhuo.Config
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
@@ -57,6 +59,8 @@ class HomeFragment :
         databing.recyclerView.adapter = homeArticleAdapter
          homeArticleAdapter.setItemClickListener = {
              postion: Int, dataBean: TopArticleListBean ->
+//                NavController(requireContext()).navigate(R.id.frame_group)
+//              navigation().navigate(R.id.action_homeFragment_to_webFragment)
              Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_webFragment)
              Log.i(Config.TAG,"当前的位置${postion}-----${dataBean.toString()}")
          }

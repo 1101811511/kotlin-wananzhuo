@@ -13,12 +13,33 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_webFragment"
-            app:destination="@+id/webFragment"/>
+            app:destination="@id/webFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/webFragment"
         tools:layout="@layout/fragment_web"
         android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.WebFragment"
         android:label="WebFragment" />
+    <fragment
+        tools:layout="@layout/fragment_guangchang"
+        android:id="@+id/guangFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.GuangFragment"
+        android:label="GuangFragment" />
+    <fragment
+        tools:layout="@layout/fragment_mine"
+        android:id="@+id/mineFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.MineFragment"
+        android:label="MineFragment" />
+    <fragment
+        tools:layout="@layout/fragment_public"
+        android:id="@+id/publicFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.PublicFragment"
+        android:label="PublicFragment" />
+    <fragment
+        android:id="@+id/proJectFragment"
+        android:name="com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment.ProJectFragment"
+        android:label="ProJectFragment" />
+
 
 </navigation>

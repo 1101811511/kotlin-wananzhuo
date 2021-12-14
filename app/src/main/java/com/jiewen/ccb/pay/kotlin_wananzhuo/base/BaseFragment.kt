@@ -9,6 +9,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
 
 /**
@@ -45,6 +47,9 @@ abstract class BaseFragment<DB : ViewDataBinding,VM :ViewModel>( val mClass:Clas
     abstract fun initView()
 
     abstract fun getLayoutId(): Int
+
+
+    fun navigation():NavController =  NavHostFragment.findNavController(this)
 
 
 

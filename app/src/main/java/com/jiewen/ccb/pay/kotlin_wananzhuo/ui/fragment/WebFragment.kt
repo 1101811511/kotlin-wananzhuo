@@ -12,7 +12,7 @@ import com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.WebFragmentViewHolder
  *    desc   : 我好难呀，我太难了呀
  *    version: 1.0
  */
-class eWebFragment :BaseFragment<FragmentWebBinding ,WebFragmentViewHolder>(WebFragmentViewHolder::class.java) {
+class WebFragment :BaseFragment<FragmentWebBinding ,WebFragmentViewHolder>(WebFragmentViewHolder::class.java) {
     override fun initView() {
 
     }

@@ -16,6 +16,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    configurations {
+        cleanedAnnotations
+        compile.exclude group: 'org.jetbrains' , module:'annotations'
+    }
+
 
     buildTypes {
         release {
@@ -70,5 +75,6 @@ dependencies {
     //header和footer
     implementation  'com.scwang.smart:refresh-header-classics:2.0.3'
     implementation  'com.scwang.smart:refresh-footer-classics:2.0.3'
+
 
 }

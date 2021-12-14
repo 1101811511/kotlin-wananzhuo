@@ -2,33 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home_page"
+        android:id="@+id/homeFragment"
         android:checkable="true"
         android:icon="@mipmap/ic_launcher"
         android:title="首页"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/project_page"
+        android:id="@+id/proJectFragment"
 
         android:checkable="true"
         android:icon="@mipmap/ic_launcher"
         android:title="项目"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/guang_page"
+        android:id="@+id/guangFragment"
         android:checkable="true"
         android:icon="@mipmap/ic_launcher"
         android:title="广场"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/public_page"
+        android:id="@+id/publicFragment"
 
         android:checkable="true"
         android:icon="@mipmap/ic_launcher"
         android:title="公众号"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/mine_page"
+        android:id="@+id/mineFragment"
 
         android:checkable="true"
         android:icon="@mipmap/ic_launcher"
