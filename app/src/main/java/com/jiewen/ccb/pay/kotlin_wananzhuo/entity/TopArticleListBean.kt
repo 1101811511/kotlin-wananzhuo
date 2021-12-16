@@ -1,5 +1,7 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.entity
 
+import java.io.Serializable
+
 /**
  *    author : 桶哥二号
  *    motto : Anything is possible
@@ -11,3 +13,4 @@ package com.jiewen.ccb.pay.kotlin_wananzhuo.entity
  * 置顶文章的bean
  */
 data class TopArticleListBean(val author:String,val chapterName:String,val link:String,val niceDate:String,val title:String,val id:String,val shareUser:String ,val superChapterName:String)
+    :Serializable

@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
+import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.activity.MainActivity
 
 /**
  *    author : 桶哥二号
@@ -37,9 +39,14 @@ abstract class BaseFragment<DB : ViewDataBinding,VM :ViewModel>( val mClass:Clas
         initViewModel()
         //初始化相关的操作
         initView()
+        initData()
         return databing.root
     }
-        //先保留吧
+
+     fun initData() {
+    }
+
+    //先保留吧
      fun initViewModel(){
 
      }
@@ -49,7 +56,13 @@ abstract class BaseFragment<DB : ViewDataBinding,VM :ViewModel>( val mClass:Clas
     abstract fun getLayoutId(): Int
 
 
-    fun navigation():NavController =  NavHostFragment.findNavController(this)
+
+
+
+
+//    fun navigation():NavController =  Navigation.findNavController(requireView())
+    fun navigation():NavController = NavHostFragment.findNavController(this)
+    fun naback() = Navigation.findNavController(requireView()).navigateUp()
 
 
 

@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import java.util.logging.Level
 
 /**
  *    author : 桶哥二号
@@ -40,6 +41,13 @@ class RetrofitManager {
     fun <T> creatApiServices(classes: Class<T>): T {
         return initRetrofit().create(classes)
     }
+    //日志打印
+    fun getRequestLog():Interceptor{
+        return HttpLoggingInterceptor("贝吉塔").apply {
+            setPrintLevel(HttpLoggingInterceptor.Level.BODY)
+            setColorLevel(Level.INFO)
+        }
+    }
 
 
     //初始化okhttp
@@ -49,6 +57,7 @@ class RetrofitManager {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS)
+                .addInterceptor(getRequestLog())
                 .build()
         }
 }

@@ -17,21 +17,31 @@ import com.jiewen.ccb.pay.kotlin_wananzhuo.netWork.RetrofitManager
 class HomeRepository {
     private var pageNum: Int = 0
 
+    /**
+     * 请求banner
+     */
     suspend fun requestBanner(): ArrayList<BannerBean> =
         RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java).getBanners().data
 
+    /**
+     * 置顶文章
+     */
     suspend fun requestArticleList(): ArrayList<TopArticleListBean> =
         RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java)
             .getTopArticles().data
 
-
+    /**
+     * 获取第一页
+     */
     suspend fun requestHomeArticleList(): HomeArticleListBean {
         pageNum = 0
         return RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java)
             .getArticles(0).data
     }
 
-
+    /**
+     * 加载更多
+     */
     suspend fun loadMoreHmeArticleList(): HomeArticleListBean {
         pageNum++
         return RetrofitManager.retrofitManager.creatApiServices(AppServices::class.java)

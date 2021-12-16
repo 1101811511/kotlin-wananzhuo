@@ -1,5 +1,6 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.ui.activity
 
+import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.jiewen.ccb.pay.kotlin_wananzhuo.R
@@ -24,11 +25,12 @@ class MainActivity : BaseActivity() {
     override fun getLayOutId(): Int = R.layout.activtiy_main
 
     override fun initView() {
-        //绑定navigation和bottomnavigation 来实现底部切换
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.frame_group) as NavHostFragment
-        val navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(bottom_view, navController)
+        //绑定navigation和bottomnavigation 来实现底部切换 ----弃用
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.frame_group) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        NavigationUI.setupWithNavController(bottom_view, navController)
+
         //        showFragment(currentFragmentIndex)
 //        bottom_view.setOnNavigationItemSelectedListener {
 //            when (it.itemId) {

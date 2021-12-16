@@ -1,5 +1,6 @@
 package com.jiewen.ccb.pay.kotlin_wananzhuo.ui.fragment
 
+import android.os.Bundle
 import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -10,6 +11,7 @@ import com.jiewen.ccb.pay.kotlin_wananzhuo.R
 import com.jiewen.ccb.pay.kotlin_wananzhuo.base.BaseFragment
 import com.jiewen.ccb.pay.kotlin_wananzhuo.databinding.FragmentHomeBinding
 import com.jiewen.ccb.pay.kotlin_wananzhuo.entity.TopArticleListBean
+import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.activity.MainActivity
 import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.HomeArticleAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.ui.adapter.ImageAdapter
 import com.jiewen.ccb.pay.kotlin_wananzhuo.viewModel.HomeFragmentViewModel
@@ -57,13 +59,11 @@ class HomeFragment :
             }
         }
         databing.recyclerView.adapter = homeArticleAdapter
-         homeArticleAdapter.setItemClickListener = {
-             postion: Int, dataBean: TopArticleListBean ->
-//                NavController(requireContext()).navigate(R.id.frame_group)
-//              navigation().navigate(R.id.action_homeFragment_to_webFragment)
-             Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_webFragment)
-             Log.i(Config.TAG,"当前的位置${postion}-----${dataBean.toString()}")
-         }
+        homeArticleAdapter.setItemClickListener = { _: Int, dataBean: TopArticleListBean ->
+            val bundle = Bundle()
+            bundle.putSerializable("item",dataBean)
+            navigation().navigate(R.id.action_mainFragment_to_webFragment,bundle)
+        }
 
     }
 
