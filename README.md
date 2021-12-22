@@ -10,3 +10,5 @@
 5.2020年12月14号 -----添加了bottomNavigation和navigation的绑定，处理了item的点击事件
 
 6.2020年12月16号 -----更改页面结构，Mainactivity只负责承载fragment，新建一个Mainfragment作为容器来加载其他的底部fragment，取消了原来的navigation绑定botNavigation的结构，引入了viewpager2来解决切换导航重新加载页面的问题
+
+7.2020年12月22号 -----优化了网络请求，增加了异常的处理，增加了baseViewModel
